@@ -1,0 +1,18 @@
+doctype html
+
+html
+    head
+        include components/_meta.pug
+        title About.html
+        link(rel="stylesheet", href="css/normalize.min.css")
+        link(rel="stylesheet", href="css/about.min.css")
+    body
+        include helpers/_variables.pug
+        include helpers/_mixins.pug
+        include layout/_header.pug
+        include pages/_about.pug
+        include layout/_footer.pug
+
+        script(src="http://localhost:35729/livereload.js")
+        script(src="js/jquery-3.5.1.min.js")
+        script(src="js/plugins.min.js")
