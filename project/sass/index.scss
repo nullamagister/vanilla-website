@@ -1,6 +1,9 @@
 @import "helpers/variables";
+@import "helpers/placeholders";
 @import "helpers/functions";
 @import "helpers/mixins";
+@import "components/container";
+@import "components/popup";
 @import "layout/header";
 @import "pages/index";
 @import "layout/footer";

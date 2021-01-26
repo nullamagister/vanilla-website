@@ -9,6 +9,7 @@ const sourcemaps   = require('gulp-sourcemaps');
 const zip          = require('gulp-zip');
 const clean        = require('gulp-clean');
 const livereload   = require('gulp-livereload');
+const imagemin     = require('gulp-imagemin');
 
 
 gulp.task("Pug-compile", () => {
@@ -39,6 +40,17 @@ gulp.task("Js-minify", () => {
                .pipe(livereload());
 });
 
+gulp.task("Image-minify", () => {
+    return gulp.src("project/imgs/*.*")
+               .pipe(imagemin())
+               .pipe(gulp.dest("dist/imgs"));
+});
+
+gulp.task("Font-directing", () => {
+    return gulp.src("project/webfonts/*.*")
+               .pipe(gulp.dest("dist/webfonts"));
+});
+
 gulp.task("Dist-compress", () => {
     return gulp.src("dist/**/*.*")
                .pipe(zip("Vanilla.zip"))
@@ -50,14 +62,16 @@ gulp.task("Dist-clean", () => {
                .pipe(clean({force: true}));
 });
 
-gulp.task("compile", gulpSequence("Pug-compile", "Sass-compile", "Js-minify"));
+gulp.task("compile", gulpSequence("Pug-compile", "Sass-compile", "Js-minify", "Image-minify", "Font-directing"));
 
-gulp.task("deploy", gulpSequence("Pug-compile", "Sass-compile", "Js-minify", "Dist-compress", "Dist-clean"));
+gulp.task("deploy", gulpSequence("Pug-compile", "Sass-compile", "Js-minify", "Image-minify", "Font-directing", "Dist-compress", "Dist-clean"));
 
 gulp.task("watch", () => {
     require("./server.js");
     livereload.listen()
-    gulp.watch(["project/pug/*.pug", "project/pug/rtl/*.pug"], ["Pug-compile"]);
-    gulp.watch(["project/sass/*.scss", "project/sass/rtl/*.scss", "project/css/*.css"], ["Sass-compile"]);
+    gulp.watch(["project/pug/*.pug", "project/pug/**/*.pug", "project/pug/rtl/*.pug"], ["Pug-compile"]);
+    gulp.watch(["project/sass/*.scss", "project/sass/**/*.scss", "project/sass/rtl/*.scss", "project/css/*.css"], ["Sass-compile"]);
     gulp.watch("project/js/*.js", ["Js-minify"]);
+    gulp.watch("project/imgs", ["Image-minify"]);
+    gulp.watch("project/fobts", ["Font-directing"]);
 });

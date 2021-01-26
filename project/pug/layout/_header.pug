@@ -1,1 +1,65 @@
-h2 [TODO] layout/_header.pug
+// Start Settings
+.settings
+    .icon-box
+        i(class="fas fa-cog fa-fw")
+    .menu
+        // Start Colors
+        section(class="colors setting-box")
+            h2 Colors
+            ul
+                li(class="active", data-color="#e4d82f")
+                li(data-color="#e43b2f")
+                li(data-color="#53e42f")
+                li(data-color="#2fb1e4")
+                li(data-color="#6e2fe4")
+        // Start Random Backgrounds
+        section(class="random-background setting-box")
+            h2 Random Background
+            span(class="active", data-random="true") Yes
+            span(data-random="false") No
+        // Start Show Bulles
+        section(class="show-bullets setting-box")
+            h2 Show Bullets
+            span(class="active", data-show="true") Yes
+            span(data-show="false") No
+        // Start Reset Options
+        section(class="reset-options setting-box")
+            span Reset Options
+
+
+// Start Navigation Bullets
+.nav-bullets
+    div(class="bullet", data-target="header")
+        .tooltip: span Home
+    div(class="bullet", data-target=".about-us")
+        .tooltip: span About Us
+    div(class="bullet", data-target=".our-skills")
+        .tooltip: span Skills
+    div(class="bullet", data-target=".our-gallary")
+        .tooltip: span Gallary
+    div(class="bullet", data-target=".our-timeline")
+        .tooltip: span Timeline
+    div(class="bullet", data-target=".our-features")
+        .tooltip: span Features
+    div(class="bullet", data-target=".testimonials")
+        .tooltip: span Testimonials
+
+
+// Start Header
+header
+    .container
+        div.overlay
+        nav
+            .logo: h1 Vanilla Design
+            ul.links
+                li: a(href="#", class="active", data-target="header") Home
+                li: a(href="#", data-target=".about-us") About
+                li: a(href="#", data-target=".our-skills") Skills
+                li: a(href="#", data-target=".our-gallary") Gallary
+                li: a(href="#", data-target=".our-timeline") Timeline
+                li: a(href="#", data-target=".our-features") Features
+                li: a(href="#", data-target=".testimonials") Testimonials
+        .introductory
+            h2 We Are <span>Creative</span> Agency
+            p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Urna duis convallis convallis tellus. Pretium vulputate sapien nec sagittis aliquam malesuada.
+
